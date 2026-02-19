@@ -3,19 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Blog</title>
+    <title>Vivek Blog</title>
+
+    <style>
+        html { margin:10px; }
+        body { background-color:#404040; color:white; }
+        nav{
+            background-color: grey;
+            padding:10px;
+            font-size:26px;
+            font-weight:bold;
+            font-family:Arial;
+            border-radius:10px;
+        }
+        .grid {
+            display: flex;
+            gap: 20px;       
+            flex-wrap: wrap;        
+        }
+
+        .card-each {
+            border:2px solid lightgrey;
+            width:300px;
+            border-radius:10px;
+            padding:20px;
+            padding-top:10px;
+            background-color:grey;
+        }
+        .card-title{
+            height:80px;
+        }
+        .card-content{
+            margin-top:10px;
+        }
+
+        .button {
+            border-radius:10px;
+            height:28px;
+            margin-top:10px;
+        }
+
+        .button:hover {
+            background-color:lightblue;
+        }
+
+        footer {
+            text-align:center;
+            padding:20px;
+        }
+    </style>
 </head>
+
 <body>
+    <nav>
+        Vivek Blogs
+    </nav>
     <h1>Simple Blog Application</h1>
 
-    {% for post in posts %}
-        <h2>{{ post.title }}</h2>
-        <small>{{ post.date_posted|date:"F d, Y H:i" }}</small>
-        <hr>
-    {% empty %}
-        <p>No posts available.</p>
-    {% endfor %}
+    <div class="grid">
+        {% for post in posts %}
+        <div class="card-each">
+            <div class="card-title">
+                <h2>{{ post.title }}</h2>
+            </div>
+            <small>{{ post.date_posted|date:"F d, Y H:i" }}</small>
+            <div class="card-content">
+                {{post.content}}
+            </div>
+            <button class="button" onclick="alert('Visit vivekrs.in to know more about the author.')">
+                Author: {{post.author}}
+            </button>
+        </div>
+        {% empty %}
+            <p>No posts available.</p>
+        {% endfor %}
+    </div>
 
-    
+    <footer>
+        <h5>© Made by Vivek Ranjan Sahoo, 2026</h5>
+    </footer>
+
 </body>
 </html>
